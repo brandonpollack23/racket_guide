@@ -19,4 +19,13 @@
 (define (my-length ls)
   (myfoldl (λ (_ acc) (+ acc 1)) 0 ls))
 
-;; 2.3.4
+(define (remove-dups l)
+  (cond
+    [(empty? l) empty]
+    [(empty? (rest l)) l]
+    [else
+     (let ([curr (first l)]
+           [next (first (rest l))])
+       (if (equal? curr next)
+           (remove-dups (rest l))
+           (cons curr (remove-dups (rest l)))))]))
