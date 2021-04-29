@@ -29,3 +29,13 @@
        (if (equal? curr next)
            (remove-dups (rest l))
            (cons curr (remove-dups (rest l)))))]))
+
+(define (myflatten ls)
+  (cond
+    [(empty? ls) empty]
+    [else 
+     (let ([hd (car ls)]
+           [rst (myflatten (cdr ls))])
+       (if (list? hd)
+           (append (myflatten hd) (myflatten rst))
+           (cons hd (myflatten rst))))]))
